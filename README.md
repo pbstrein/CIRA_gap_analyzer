@@ -5,14 +5,14 @@ The Data Gap Analyzer goes through the files in the CloudSat database and finds 
 
 ### Program Requirements
 To run, this program needs 3 things
-1. A json file that contains the config information to connect to the database 
+1 A json file that contains the config information to connect to the database 
   - **Note**: By default the program searches for the file at `config/dbconfig.json`, to change that, use `-dbc [file_loc]` in the command line
-2. A json file that contains the input file tree, meaning, what “parent” products are required to make a “child” format. 
+2 A json file that contains the input file tree, meaning, what “parent” products are required to make a “child” format. 
   - It must be in the format of ‘[child_product_name]:[_CS_[parent_product_name]_GRANULE_P_R04_E02.hdf]` 
     - if the parent product is 0A-CPR or 1A-AUX, then it must end with `.CPR` or `.1AA` respectively instead of .hdf
   - by default it finds the file at `config/input_config.json`, to change the location, use `-ftc [file_loc]` in the command line
   - *Note*: the epic does not matter, the program will change the epic as it goes along
-3. In the command line, `python3 gapanalizer.py -p [product_name] -e [epic_number]`
+3 In the command line, `python3 gapanalizer.py -p [product_name] -e [epic_number]`
   - You cannot use gapanalizer_functions, it will not work, only gapanalizer.py
   - `-p [product_name]` selects the child/base product with name `[product_name]` that will be searched
   - `-e [epic_number]` will select the epic that will be searched
@@ -26,15 +26,15 @@ Using python3, will check the products of 2B-GEOPROF from E02 - E06 and find the
 
 ### Output
 Two kinda of files will be made by running this program:
-1. Results file by epic - text files that show all the files missing from an orbit, and the conclusion as to why there were missing files - missing primary input (0A-CPR or 1A-AUX) or algorithm error of some file.
+1 Results file by epic - text files that show all the files missing from an orbit, and the conclusion as to why there were missing files - missing primary input (0A-CPR or 1A-AUX) or algorithm error of some file.
   - These files are found by default in a folder called `results`, but that folder can be changed by using `-rl [foldername]`
-2. Summary file of program - A summary of the results of all the epics. Contains the execution time, the total files check, total files missing, child products missing, and child products checked. Also contains the number of missing primary input errors and algorithm errors by product
+2 Summary file of program - A summary of the results of all the epics. Contains the execution time, the total files check, total files missing, child products missing, and child products checked. Also contains the number of missing primary input errors and algorithm errors by product
   - **Note** - the child product files missing and the total number of errors are not always the same
   - **Note** - by default the summary is called `results/[product_name]_[epic range]_summary`, but can be changed by `-s [filename]`
 
 ### Tips and Warnings
-1. Use `-v` to increase the verbosity of the console. It can also help with debugging if a problem arises. Maximum console output at `-vvv`
-2. If the file tree config is not made correctly, it will screw up the whole program and result in bad results - make sure that it is made correctly with key value as product name and value as a list of abbreviated parent filenames
+1 Use `-v` to increase the verbosity of the console. It can also help with debugging if a problem arises. Maximum console output at `-vvv`
+2 If the file tree config is not made correctly, it will screw up the whole program and result in bad results - make sure that it is made correctly with key value as product name and value as a list of abbreviated parent filenames
   - For Example
 ```
 {“0A-CPR”: [],
@@ -43,13 +43,13 @@ Two kinda of files will be made by running this program:
   "MODIS-AUX": ["_CS_1B-CPR_GRANULE_P_R04_E02.hdf”]
 }
 ```
-3. Be sure to include 0A-CPR and 1A-AUX in the file tree, but leave their values as blank lists
+3 Be sure to include 0A-CPR and 1A-AUX in the file tree, but leave their values as blank lists
   - ie - `“0A-CPR”: []`
-4. When using `-e`, you can have a single number to get a single epic, or you can use two numbers to get a range
+4 When using `-e`, you can have a single number to get a single epic, or you can use two numbers to get a range
   - **i.e.** - `-e 2` will run E02
   - **i.e.** - `-e 2 4` will run E02 - E04
   - **NOTE** - the range must be smaller to greater, `-e 4 2` will not work
-5. You can turn off printing of the results or summary through `-ns` or `-nr`
+5 You can turn off printing of the results or summary through `-ns` or `-nr`
 
 ### Command Line Arguments
 - `-h` Command line help
