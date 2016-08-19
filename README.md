@@ -5,14 +5,14 @@ The Data Gap Analyzer goes through the files in the CloudSat database and finds 
 
 ### Program Requirements
 To run, this program needs 3 things
-1 A json file that contains the config information to connect to the database 
+  1. A json file that contains the config information to connect to the database 
   - **Note**: By default the program searches for the file at `config/dbconfig.json`, to change that, use `-dbc [file_loc]` in the command line
-2 A json file that contains the input file tree, meaning, what “parent” products are required to make a “child” format. 
+  2. A json file that contains the input file tree, meaning, what “parent” products are required to make a “child” format. 
   - It must be in the format of ‘[child_product_name]:[_CS_[parent_product_name]_GRANULE_P_R04_E02.hdf]` 
     - if the parent product is 0A-CPR or 1A-AUX, then it must end with `.CPR` or `.1AA` respectively instead of .hdf
   - by default it finds the file at `config/input_config.json`, to change the location, use `-ftc [file_loc]` in the command line
   - *Note*: the epic does not matter, the program will change the epic as it goes along
-3 In the command line, `python3 gapanalizer.py -p [product_name] -e [epic_number]`
+  3. In the command line, `python3 gapanalizer.py -p [product_name] -e [epic_number]`
   - You cannot use gapanalizer_functions, it will not work, only gapanalizer.py
   - `-p [product_name]` selects the child/base product with name `[product_name]` that will be searched
   - `-e [epic_number]` will select the epic that will be searched
