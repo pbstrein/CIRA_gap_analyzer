@@ -4,7 +4,7 @@
 The Data Gap Analyzer goes through the files in the CloudSat database and finds the files missing from a user-given product, and finds the cause of why the file is missing, whether it was missing a primary input, or one of its parent files had an algorithm error and was not created, thus making the child product not appear. It takes all the information of the missing files and prints them into result files and prints a summary of results to a summary file.
 
 ### Program Requirements
-To run, this program needs 3 things -
+To run, this program needs 3 things
 1. A json file that contains the config information to connect to the database 
   - **Note**: By default the program searches for the file at `config/dbconfig.json`, to change that, use `-dbc [file_loc]` in the command line
 2. A json file that contains the input file tree, meaning, what “parent” products are required to make a “child” format. 
